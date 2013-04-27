@@ -1,9 +1,35 @@
 
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
-
+from django.views.generic.simple import redirect_to
 from mezzanine.core.views import direct_to_template
+from django.conf.urls.defaults import *
+from django.contrib.comments.models import Comment
+from voting.views import vote_on_object
+from imagestore.models import Album, Image
+from hitcount.views import update_hit_count_ajax
+from mezzanine.generic.models import ThreadedComment
+from userProfile.views import close_login_popup
+from userProfile.views import broadcast
 
+comment_dict = {
+    'model': ThreadedComment,
+    'template_object_name': 'comment',
+    'slug_field': 'slug',
+    'allow_xmlhttprequest': 'true',    
+}
+album_dict = {
+    'model': Album,
+    'template_object_name': 'album',
+    'slug_field': 'slug',
+    'allow_xmlhttprequest': 'true',
+}
+image_dict = {
+    'model': Image,
+    'template_object_name': 'image',
+    'slug_field': 'slug',
+    'allow_xmlhttprequest': 'true',
+}
 
 admin.autodiscover()
 
@@ -12,11 +38,22 @@ admin.autodiscover()
 # to the project's homepage.
 
 urlpatterns = patterns("",
-
+    url(r'', include('social_auth.urls')),
+    url(r'^relationships/', include('relationships.urls')),
+    ('^activity/', include('actstream.urls')),
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
     ("^admin/", include(admin.site.urls)),
-
+    url(r'^comments/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, comment_dict),
+    url(r'^albums/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, album_dict),
+    url(r'^images/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, image_dict),   
+    (r"^gallery/", include("imagestore.urls", namespace="imagestore")),
+    url(r'^object/hit/$', update_hit_count_ajax, name='hitcount_update_ajax'),
+    url(r'^close_login_popup/$', close_login_popup, name='login_popup_close'),
+    url(r'^find-friends/', include('social_friends_finder.urls')),
+    (r'^messages/', include('django_messages.urls')),
+    url(r'^notification/', include('notification.urls')),
+    url(r'^broadcast/', broadcast, name="broadcast" ),
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 
@@ -28,7 +65,6 @@ urlpatterns = patterns("",
     # one out.
 
     url("^$", direct_to_template, {"template": "index.html"}, name="home"),
-
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
     # This pattern gives us a normal ``Page`` object, so that your

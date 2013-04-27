@@ -1,8 +1,9 @@
-
+﻿
 ######################
 # MEZZANINE SETTINGS #
 ######################
 
+from django.template.defaultfilters import slugify
 # The following settings are already defined with default values in
 # the ``defaults.py`` module within each of Mezzanine's apps, but are
 # common enough to be put here, commented out, for convenient
@@ -98,7 +99,7 @@ MANAGERS = ADMINS
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = None
+TIME_ZONE = "Asia/Calcutta"
 
 # If you set this to True, Django will use timezone-aware datetimes.
 USE_TZ = True
@@ -110,7 +111,7 @@ LANGUAGE_CODE = "en"
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
 # production. Best set to ``True`` in local_settings.py
-DEBUG = False
+DEBUG = True
 
 # Whether a user's session cookie expires when the Web browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -122,7 +123,7 @@ SITE_ID = 1
 USE_I18N = False
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = "06a5e999-4f48-4aad-8534-2dae2d44fee4ed08bcad-cf4e-4178-b67c-68795f8ebeb742de3ba4-500a-4335-931e-82147f484902"
+SECRET_KEY = "bcc8efa3-34be-472c-9e7f-229b13e406fc1da67a66-99d5-40f8-8400-ec15329f02667184b876-7a6a-45e0-b89d-f8208accf1d5"
 
 # Tuple of IP addresses, as strings, that:
 #   * See debug comments, when DEBUG is true
@@ -131,11 +132,13 @@ INTERNAL_IPS = ("127.0.0.1",)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    "django.template.loaders.filesystem.Loader",
     "django.template.loaders.app_directories.Loader",
+    "django.template.loaders.filesystem.Loader",
 )
 
-AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
+AUTHENTICATION_BACKENDS = (
+    "mezzanine.core.auth_backends.MezzanineBackend",
+)
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -173,10 +176,18 @@ DATABASES = {
 #########
 
 import os
-
+import sys
+from django.conf import settings
 # Full filesystem path to the project.
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
+sys.path.insert(0,os.path.join(PROJECT_ROOT,"apps"))
+sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-relationships"))
+sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-voting"))
+sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-hitcount"))
+sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-social-friends-finder"))
+sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-messages"))
+sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-notification"))
+#sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-social-path"))
 # Name of the directory for the project.
 PROJECT_DIRNAME = PROJECT_ROOT.split(os.sep)[-1]
 
@@ -223,7 +234,8 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 # APPLICATIONS #
 ################
 
-INSTALLED_APPS = (
+INSTALLED_APPS = (   
+    "userProfile", 
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -241,8 +253,21 @@ INSTALLED_APPS = (
     "mezzanine.pages",
     "mezzanine.galleries",
     "mezzanine.twitter",
-    #"mezzanine.accounts",
-    #"mezzanine.mobile",
+    "mezzanine.accounts",
+    "mezzanine.mobile",
+    "social_auth",
+    "relationships",
+    "south",
+    "activity_feed",
+    "actstream",
+    "voting",
+    "tagging",
+    "sorl.thumbnail",
+    "imagestore",
+    "hitcount",
+    "social_friends_finder",
+    "notification",
+    "django_messages",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -258,6 +283,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
+    "social_auth.context_processors.social_auth_by_type_backends",
+#)
+    "social_auth.context_processors.social_auth_by_name_backends",
+    "social_auth.context_processors.social_auth_backends",
+    "social_auth.context_processors.social_auth_by_type_backends",
+    "social_auth.context_processors.social_auth_login_redirect",
+    'django_messages.context_processors.inbox',
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -355,3 +387,56 @@ except ImportError:
     pass
 else:
     set_dynamic_settings(globals())
+
+
+# SOCIAL AUTH SETTINGS
+FACEBOOK_APP_ID = '434231519980833'
+FACEBOOK_API_SECRET = '50157c8437d11172222a02d2970b69a1'
+TWITTER_CONSUMER_KEY         = 'KvNB58DW7Ac0Y8yaLrQFKw'
+TWITTER_CONSUMER_SECRET      = 'J5HoGEVHZWREbDjwHLc5vRwKnby1KqNIa4R0ladXLY'
+SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook', 'twitter',)
+SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'associate_complete'
+SOCIAL_AUTH_DEFAULT_USERNAME =  'new_social_auth_user' # you'll need to import slugify from 'django.template.defaultfilters'
+SOCIAL_AUTH_EXTRA_DATA = False
+SOCIAL_AUTH_CHANGE_SIGNAL_ONLY = True
+FACEBOOK_AUTH_EXTRA_ARGUMENTS = {'display': 'popup'}
+
+TWITTER_EXTRA_DATA = [('profile_image_url', 'profile_image_url')]
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+ACTSTREAM_SETTINGS = {
+    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image',),
+    'MANAGER': 'userProfile.streams.FeedActionManager',
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'USE_JSONFIELD': True,
+    'GFK_FETCH_DEPTH': 0,
+}
+
+
+LOGIN_URL          = '/login-form/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_ERROR_URL    = '/login-error/'
+AUTH_PROFILE_MODULE= 'userProfile.UserProfile'
+#AUTH_PROFILE_MODULE= 'socialprofile.SocialProfile'
+DJANGORESIZED_DEFAULT_SIZE = [800, 600]
+#HITCOUNT_KEEP_HIT_ACTIVE = { 'days': 7 }
+#HITCOUNT_HITS_PER_IP_LIMIT = 0
+#HITCOUNT_EXCLUDE_USER_GROUP = ('',)
+
+NOTIFICATION_BACKENDS = [
+    ("email", "notification.backends.email.EmailBackend"),
+]
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'tresratings@gmail.com'
+EMAIL_HOST_PASSWORD = 'tres1234'
+EMAIL_PORT = 587
+NOTIFICATION_BACKENDS = [("tresratings@gmail.com", "notification.backends.email.EmailBackend"),]
+#other code....
