@@ -1,0 +1,12 @@
+*.pyc
+*.pyo
+*.db
+.DS_Store
+.coverage
+/apps
+/django-hitcount
+/django-messages
+/django-notification
+/django-relationships
+/django-social-friends-finder
+/django-voting
