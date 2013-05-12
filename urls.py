@@ -53,6 +53,7 @@ urlpatterns = patterns("",
     (r'^messages/', include('django_messages.urls')),
     url(r'^notification/', include('notification.urls')),
     url(r'^broadcast/', broadcast, name="broadcast" ),
+    url('^', include('follow.urls')),
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 

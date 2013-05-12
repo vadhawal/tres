@@ -187,6 +187,8 @@ sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-hitcount"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-social-friends-finder"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-messages"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-notification"))
+sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-follow"))
+
 #sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-social-path"))
 # Name of the directory for the project.
 PROJECT_DIRNAME = PROJECT_ROOT.split(os.sep)[-1]
@@ -268,6 +270,7 @@ INSTALLED_APPS = (
     "social_friends_finder",
     "notification",
     "django_messages",
+    "follow",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -412,7 +415,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 ACTSTREAM_SETTINGS = {
-    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image',),
+    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image','actstream.action',),
     'MANAGER': 'userProfile.streams.FeedActionManager',
     'FETCH_RELATIONS': True,
     'USE_PREFETCH': True,
