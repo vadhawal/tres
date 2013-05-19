@@ -415,7 +415,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 ACTSTREAM_SETTINGS = {
-    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image','actstream.action',),
+    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image','actstream.action','mezzanine.blog.BlogPost',),
     'MANAGER': 'userProfile.streams.FeedActionManager',
     'FETCH_RELATIONS': True,
     'USE_PREFETCH': True,
