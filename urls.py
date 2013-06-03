@@ -8,6 +8,7 @@ from voting.views import vote_on_object
 from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment
+from userProfile.models import Broadcast
 from userProfile.views import close_login_popup
 from userProfile.views import broadcast
 
@@ -29,6 +30,12 @@ image_dict = {
     'slug_field': 'slug',
     'allow_xmlhttprequest': 'true',
 }
+broadcast_dict = {
+    'model': Broadcast,
+    'template_object_name': 'broadcast',
+    'slug_field': 'slug',
+    'allow_xmlhttprequest': 'true',    
+}
 
 admin.autodiscover()
 
@@ -45,7 +52,8 @@ urlpatterns = patterns("",
     ("^admin/", include(admin.site.urls)),
     url(r'^comments/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, comment_dict),
     url(r'^albums/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, album_dict),
-    url(r'^images/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, image_dict),  
+    url(r'^images/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, image_dict),
+    url(r'^broadcast/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, broadcast_dict),   
     url(r'^voters/(?P<content_type_id>\d+)/(?P<object_id>\d+)/$', 'voting.views.get_voters_info', name='get_voters_info'), 
     (r"^gallery/", include("imagestore.urls", namespace="imagestore")),
     url(r'^object/hit/$', update_hit_count_ajax, name='hitcount_update_ajax'),
