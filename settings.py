@@ -445,3 +445,5 @@ EMAIL_PORT = 587
 NOTIFICATION_BACKENDS = [("tresratings@gmail.com", "notification.backends.email.EmailBackend"),]
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 #other code....
+
+MAX_IMAGES_PER_VENDOR = 50
