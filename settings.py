@@ -415,7 +415,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 ACTSTREAM_SETTINGS = {
-    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image','actstream.action','mezzanine.blog.BlogPost','userProfile.broadcast'),
+    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image','actstream.action','mezzanine.blog.BlogPost','userProfile.broadcast','userProfile.userwishradio',),
     'MANAGER': 'userProfile.streams.FeedActionManager',
     'FETCH_RELATIONS': True,
     'USE_PREFETCH': True,
@@ -447,3 +447,4 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 #other code....
 
 MAX_IMAGES_PER_VENDOR = 50
+PREFIX_MESSAGE_MAX_LENGTH = 256

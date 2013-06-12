@@ -8,9 +8,9 @@ from voting.views import vote_on_object
 from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment
-from userProfile.models import Broadcast
+from userProfile.models import Broadcast, UserWishRadio
 from userProfile.views import close_login_popup
-from userProfile.views import broadcast
+from userProfile.views import broadcast, userwish
 
 comment_dict = {
     'model': ThreadedComment,
@@ -30,9 +30,9 @@ image_dict = {
     'slug_field': 'slug',
     'allow_xmlhttprequest': 'true',
 }
-broadcast_dict = {
-    'model': Broadcast,
-    'template_object_name': 'broadcast',
+user_wishradio_dict = {
+    'model': UserWishRadio,
+    'template_object_name': 'userwishradio',
     'slug_field': 'slug',
     'allow_xmlhttprequest': 'true',    
 }
@@ -53,7 +53,7 @@ urlpatterns = patterns("",
     url(r'^comments/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, comment_dict),
     url(r'^albums/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, album_dict),
     url(r'^images/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, image_dict),
-    url(r'^broadcast/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, broadcast_dict),   
+    url(r'^broadcast/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, user_wishradio_dict),   
     url(r'^voters/(?P<content_type_id>\d+)/(?P<object_id>\d+)/$', 'voting.views.get_voters_info', name='get_voters_info'), 
     (r"^gallery/", include("imagestore.urls", namespace="imagestore")),
     url(r'^object/hit/$', update_hit_count_ajax, name='hitcount_update_ajax'),
@@ -62,6 +62,7 @@ urlpatterns = patterns("",
     (r'^messages/', include('django_messages.urls')),
     url(r'^notification/', include('notification.urls')),
     url(r'^broadcast/', broadcast, name="broadcast" ),
+    url(r'^userwish/', userwish, name="userwish" ),
     url('^', include('follow.urls')),
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
