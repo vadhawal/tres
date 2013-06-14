@@ -10,7 +10,7 @@ from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment
 from userProfile.models import Broadcast, UserWishRadio
 from userProfile.views import close_login_popup
-from userProfile.views import broadcast, userwish
+from userProfile.views import broadcast, userwish, view_wish
 
 comment_dict = {
     'model': ThreadedComment,
@@ -63,6 +63,7 @@ urlpatterns = patterns("",
     url(r'^notification/', include('notification.urls')),
     url(r'^broadcast/', broadcast, name="broadcast" ),
     url(r'^userwish/', userwish, name="userwish" ),
+    url(r'^view_wish/(?P<wish_id>[\d]+)/$', view_wish, name='view_wish'),
     url('^', include('follow.urls')),
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
