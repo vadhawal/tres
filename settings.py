@@ -79,7 +79,6 @@ BLOG_USE_FEATURED_IMAGE = True
 # INSTALLED_APPS setting.
 USE_SOUTH = True
 
-
 ########################
 # MAIN DJANGO SETTINGS #
 ########################
