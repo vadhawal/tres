@@ -7,7 +7,7 @@ from django.contrib.comments.models import Comment
 from voting.views import vote_on_object
 from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
-from mezzanine.generic.models import ThreadedComment
+from mezzanine.generic.models import ThreadedComment, Review
 from userProfile.models import Broadcast, UserWishRadio
 from userProfile.views import close_login_popup
 from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish
@@ -18,6 +18,14 @@ comment_dict = {
     'slug_field': 'slug',
     'allow_xmlhttprequest': 'true',    
 }
+
+review_dict = {
+    'model': Review,
+    'template_object_name': 'review',
+    'slug_field': 'slug',
+    'allow_xmlhttprequest': 'true',    
+}
+
 album_dict = {
     'model': Album,
     'template_object_name': 'album',
@@ -51,6 +59,7 @@ urlpatterns = patterns("",
     # admin interface, which would be marginally more secure.
     ("^admin/", include(admin.site.urls)),
     url(r'^comments/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, comment_dict),
+    url(r'^review/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, review_dict),
     url(r'^albums/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, album_dict),
     url(r'^images/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, image_dict),
     url(r'^broadcast/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, user_wishradio_dict),   
