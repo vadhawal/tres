@@ -10,7 +10,7 @@ from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment, Review
 from userProfile.models import Broadcast, UserWishRadio
 from userProfile.views import close_login_popup
-from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, getTopReviewsForBlogCategory
+from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, getTopReviewsForStoreCategory, getTopStoresForStoreCategory
 
 comment_dict = {
     'model': ThreadedComment,
@@ -77,7 +77,8 @@ urlpatterns = patterns("",
     url(r'^get_wishlist/(?P<content_type_id>\d+)/(?P<object_id>\d+)/(?P<sIndex>\d+)/(?P<lIndex>\d+)/$',
         get_wishlist, name='get_wishlist'),
     url(r'^shareWish/(?P<wish_id>\d+)/$', shareWish, name='shareWish'),
-    url(r'^latestReviews/category/(?P<category_slug>[-\w\d]+)/$', getTopReviewsForBlogCategory , name='getTopReviewsForBlogCategory'),
+    url(r'^topReviews/category/(?P<category_slug>[-\w\d]+)/$', getTopReviewsForStoreCategory , name='getTopReviewsForStoreCategory'),
+    url(r'^topStores/category/(?P<category_slug>[-\w\d]+)/$', getTopStoresForStoreCategory , name='getTopStoresForStoreCategory'),
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 
