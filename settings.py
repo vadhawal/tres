@@ -177,8 +177,11 @@ DATABASES = {
 import os
 import sys
 from django.conf import settings
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
+
 # Full filesystem path to the project.
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"apps"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-relationships"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-voting"))
@@ -229,7 +232,8 @@ ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
 # Always use forward slashes, even on Windows.
 # Don't forget to use absolute paths, not relative paths.
 TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
-
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
 ################
 # APPLICATIONS #
@@ -448,3 +452,13 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 MAX_IMAGES_PER_VENDOR = 50
 PREFIX_MESSAGE_MAX_LENGTH = 256
 IMAGESTORE_IMAGE_QUALITY = 60
+FILE_UPLOAD_PERMISSIONS = 0644
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+    }
+}
+
+
