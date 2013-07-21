@@ -11,6 +11,7 @@ from mezzanine.generic.models import ThreadedComment, Review
 from userProfile.models import Broadcast, UserWishRadio
 from userProfile.views import close_login_popup
 from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, getTopReviewsForStoreCategory, getTopStoresForStoreCategory, getTopDealsForStoreCategory, followWish, unfollowWish
+from mezzanine.blog.views import blog_subcategories
 
 comment_dict = {
     'model': ThreadedComment,
@@ -81,7 +82,8 @@ urlpatterns = patterns("",
     url(r'^topStores/category/(?P<category_slug>[-\w\d]+)/$', getTopStoresForStoreCategory , name='getTopStoresForStoreCategory'),
     url(r'^topDeals/category/(?P<category_slug>[-\w\d]+)/$', getTopDealsForStoreCategory , name='getTopDealsForStoreCategory'),
     url(r'^follow/wish/(?P<wish_id>\d+)/$', followWish, name='followWish'),
-    url(r'^unfollow/wish/(?P<wish_id>\d+)/$', unfollowWish, name='unfollowWish'),    
+    url(r'^unfollow/wish/(?P<wish_id>\d+)/$', unfollowWish, name='unfollowWish'), 
+    url(r'^subcategories/(?P<category_slug>[-\w\d]+)/$', blog_subcategories , name='blog_subcategories'),   
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 
