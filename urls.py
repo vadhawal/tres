@@ -84,7 +84,7 @@ urlpatterns = patterns("",
     url(r'^follow/wish/(?P<wish_id>\d+)/$', followWish, name='followWish'),
     url(r'^unfollow/wish/(?P<wish_id>\d+)/$', unfollowWish, name='unfollowWish'), 
     url(r'^subcategories/(?P<category_slug>[-\w\d]+)/$', blog_subcategories , name='blog_subcategories'),
-    url(r'^getvendors/[-\w\d]+/[-\w\d]+/$', get_vendors, name="get_vendors" ),      
+    url(r'^getvendors/[%&-_ \w\d]+/[%&-_ \w\d]+/$', get_vendors, name="get_vendors" ),      
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 
