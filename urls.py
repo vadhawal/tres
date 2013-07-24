@@ -11,7 +11,7 @@ from mezzanine.generic.models import ThreadedComment, Review
 from userProfile.models import Broadcast, UserWishRadio
 from userProfile.views import close_login_popup
 from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, getTopReviewsForStoreCategory, getTopStoresForStoreCategory, getTopDealsForStoreCategory, followWish, unfollowWish
-from mezzanine.blog.views import blog_subcategories, get_vendors
+from mezzanine.blog.views import blog_subcategories, get_vendors, get_vendors_all, get_vendors_allsub
 
 comment_dict = {
     'model': ThreadedComment,
@@ -84,7 +84,9 @@ urlpatterns = patterns("",
     url(r'^follow/wish/(?P<wish_id>\d+)/$', followWish, name='followWish'),
     url(r'^unfollow/wish/(?P<wish_id>\d+)/$', unfollowWish, name='unfollowWish'), 
     url(r'^subcategories/(?P<category_slug>[-\w\d]+)/$', blog_subcategories , name='blog_subcategories'),
-    url(r'^getvendors/[%&-_ \w\d]+/[%&-_ \w\d]+/$', get_vendors, name="get_vendors" ),      
+    url(r'^getvendors/[%&-_ \w\d]+/[%&-_ \w\d]+/$', get_vendors, name="get_vendors" ),
+    url(r'^getvendors/[%&-_ \w\d]+/$', get_vendors_allsub, name="get_vendors_allsub" ),
+    url(r'^getvendors/$', get_vendors_all, name="get_vendors_all" ),        
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 
