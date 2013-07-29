@@ -9,8 +9,8 @@ from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment, Review
 from userProfile.models import Broadcast, UserWishRadio
-from userProfile.views import close_login_popup
-from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, getTopReviewsForStoreCategory, getTopStoresForStoreCategory, getTopDealsForStoreCategory, followWish, unfollowWish
+from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, close_login_popup
+from userProfile.views import followWish, unfollowWish, getTrendingStores, getTrendingDeals, getTrendingReviews
 from mezzanine.blog.views import blog_subcategories, get_vendors, get_vendors_all, get_vendors_allsub
 
 comment_dict = {
@@ -78,9 +78,9 @@ urlpatterns = patterns("",
     url(r'^get_wishlist/(?P<content_type_id>\d+)/(?P<object_id>\d+)/(?P<sIndex>\d+)/(?P<lIndex>\d+)/$',
         get_wishlist, name='get_wishlist'),
     url(r'^shareWish/(?P<wish_id>\d+)/$', shareWish, name='shareWish'),
-    url(r'^topReviews/category/(?P<category_slug>[%&-_ \w\d]+)/$', getTopReviewsForStoreCategory , name='getTopReviewsForStoreCategory'),
-    url(r'^topStores/category/(?P<category_slug>[%&-_ \w\d]+)/$', getTopStoresForStoreCategory , name='getTopStoresForStoreCategory'),
-    url(r'^topDeals/category/(?P<category_slug>[%&-_ \w\d]+)/$', getTopDealsForStoreCategory , name='getTopDealsForStoreCategory'),
+    url(r'^(?P<parent_category>[%&-_ \w\d]+)/(?P<sub_category>[%&-_ \w\d]+)/trendingstores/$', getTrendingStores , name='getTrendingStores'),
+    url(r'^(?P<parent_category>[%&-_ \w\d]+)/(?P<sub_category>[%&-_ \w\d]+)/trendingdeals/$', getTrendingDeals , name='getTrendingDeals'),
+    url(r'^(?P<parent_category>[%&-_ \w\d]+)/(?P<sub_category>[%&-_ \w\d]+)/trendingreviews/$', getTrendingReviews , name='getTrendingReviews'),
     url(r'^follow/wish/(?P<wish_id>\d+)/$', followWish, name='followWish'),
     url(r'^unfollow/wish/(?P<wish_id>\d+)/$', unfollowWish, name='unfollowWish'), 
     url(r'^(?P<category_slug>[-\w\d]+)/subcategories/$', blog_subcategories , name='blog_subcategories'),
