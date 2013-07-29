@@ -9,7 +9,7 @@ from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment, Review
 from userProfile.models import Broadcast, UserWishRadio
-from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, close_login_popup
+from userProfile.views import broadcast, userwish, get_wishlist, shareWish, close_login_popup
 from userProfile.views import followWish, unfollowWish, getTrendingStores, getTrendingDeals, getTrendingReviews
 from mezzanine.blog.views import blog_subcategories, get_vendors, get_vendors_all, get_vendors_allsub
 
@@ -73,7 +73,6 @@ urlpatterns = patterns("",
     url(r'^notification/', include('notification.urls')),
     url(r'^broadcast/', broadcast, name="broadcast" ),
     url(r'^userwish/', userwish, name="userwish" ),
-    url(r'^view_wish/(?P<wish_id>[\d]+)/$', view_wish, name='view_wish'),
     url('^', include('follow.urls')),
     url(r'^get_wishlist/(?P<content_type_id>\d+)/(?P<object_id>\d+)/(?P<sIndex>\d+)/(?P<lIndex>\d+)/$',
         get_wishlist, name='get_wishlist'),
