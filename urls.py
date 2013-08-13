@@ -9,7 +9,7 @@ from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment, Review
 from userProfile.models import Broadcast, UserWishRadio
-from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, close_login_popup
+from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, close_login_popup, get_profile_image  
 from userProfile.views import followWish, unfollowWish, getTrendingStores, getTrendingDeals, getTrendingReviews
 from mezzanine.blog.views import blog_subcategories, get_vendors, get_vendors_all, get_vendors_allsub
 
@@ -86,7 +86,8 @@ urlpatterns = patterns("",
     url(r'^(?P<category_slug>[-\w\d]+)/subcategories/$', blog_subcategories , name='blog_subcategories'),
     url(r'^getvendors/(?P<parent_category_slug>[%&-_ \w\d]+)/(?P<sub_category_slug>[%&-_ \w\d]+)/$', get_vendors, name="get_vendors" ),
     url(r'^getvendors/[%&-_ \w\d]+/$', get_vendors_allsub, name="get_vendors_allsub" ),
-    url(r'^getvendors/$', get_vendors_all, name="get_vendors_all" ),        
+    url(r'^getvendors/$', get_vendors_all, name="get_vendors_all" ),
+    url(r'^users/profile_image/(?P<username>[%&-_ \w\d]+)/$', get_profile_image, name="get_profile_image" ),        
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 
