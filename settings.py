@@ -460,5 +460,25 @@ CACHES = {
         'LOCATION': '/var/tmp/django_cache',
     }
 }
+WISH_LIKE_VERB              = u'liked the wish'
+DEAL_LIKE_VERB              = u'liked the deal'
+ALBUM_LIKE_WISH             = u'liked the album'
+REVIEW_COMMENT_LIKE_VERB    = u'liked the comment on the review'
+ALBUM_COMMENT_LIKE_VERB     = u'liked the comment on the album'
+IMAGE_COMMENT_LIKE_VERB     = u'liked the comment on the image'
+DEAL_COMMENT_LIKE_VERB      = u'liked the comment on the deal'
+WISH_COMMENT_LIKE_VERB      = u'liked the comment on the wish'
+REVIEW_LIKE_VERB            = u'liked the review'
+PHOTO_LIKE_VERB             = u'liked the photo'
+REVIEW_POST_VERB            = u'has posted a review'
+REVIEW_COMMENT_VERB         = u'has commented on review'
+ALBUM_COMMENT_VERB          = u'has commented on the album'
+IMAGE_COMMENT_VERB          = u'has commented on the image'
+DEAL_COMMENT_VERB           = u'has commented on the deal'
+WISH_COMMENT_VERB           = u'has commented on the wish'
+ALBUM_ADD_VERB              = u'added new album'
+ALBUM_ADD_IMAGE_VERB        = u'added new images to the album'
+
+
 
 
