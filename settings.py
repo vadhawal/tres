@@ -478,7 +478,9 @@ DEAL_COMMENT_VERB           = u'has commented on the deal'
 WISH_COMMENT_VERB           = u'has commented on the wish'
 ALBUM_ADD_VERB              = u'added new album'
 ALBUM_ADD_IMAGE_VERB        = u'added new images to the album'
-
+FOLLOW_VERB                 = u'started following'
+SAID_VERB                   = u'said:'
+SHARE_VERB                  = u'shared'
 
 
 
