@@ -407,7 +407,7 @@ SOCIAL_AUTH_DEFAULT_USERNAME =  'new_social_auth_user' # you'll need to import s
 SOCIAL_AUTH_EXTRA_DATA = False
 SOCIAL_AUTH_CHANGE_SIGNAL_ONLY = True
 SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
-FACEBOOK_AUTH_EXTRA_ARGUMENTS = {'display': 'popup'}
+#FACEBOOK_AUTH_EXTRA_ARGUMENTS = {'display': 'popup'}
 
 TWITTER_EXTRA_DATA = [('profile_image_url', 'profile_image_url')]
 
@@ -417,14 +417,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-ACTSTREAM_SETTINGS = {
-    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image','actstream.action','mezzanine.blog.BlogPost','userProfile.broadcast','userProfile.userwishradio','generic.review',),
-    'MANAGER': 'userProfile.streams.FeedActionManager',
-    'FETCH_RELATIONS': True,
-    'USE_PREFETCH': True,
-    'USE_JSONFIELD': True,
-    'GFK_FETCH_DEPTH': 0,
-}
+
 
 
 LOGIN_URL          = '/login-form/'
@@ -440,6 +433,8 @@ DJANGORESIZED_DEFAULT_SIZE = [800, 600]
 NOTIFICATION_BACKENDS = [
     ("email", "notification.backends.email.EmailBackend"),
 ]
+
+#Social Login Settings
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'tresratings@gmail.com'
@@ -449,16 +444,28 @@ NOTIFICATION_BACKENDS = [("tresratings@gmail.com", "notification.backends.email.
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 #other code....
 
+#Imagestore Settings
 MAX_IMAGES_PER_VENDOR = 50
 PREFIX_MESSAGE_MAX_LENGTH = 256
 IMAGESTORE_IMAGE_QUALITY = 60
 FILE_UPLOAD_PERMISSIONS = 0644
 
+#Django Cache Settings
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'LOCATION': '/var/tmp/django_cache',
     }
+}
+
+#Activity Feed Settings
+ACTSTREAM_SETTINGS = {
+    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image','actstream.action','mezzanine.blog.BlogPost','userProfile.broadcast','userProfile.userwishradio','generic.review',),
+    'MANAGER': 'userProfile.streams.FeedActionManager',
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'USE_JSONFIELD': True,
+    'GFK_FETCH_DEPTH': 0,
 }
 WISH_LIKE_VERB              = u'liked the wish'
 DEAL_LIKE_VERB              = u'liked the deal'
@@ -482,5 +489,8 @@ FOLLOW_VERB                 = u'started following'
 SAID_VERB                   = u'said:'
 SHARE_VERB                  = u'shared'
 
-
-
+#Trend Settings
+SEARCH_PER_PAGE = 10
+MAX_PAGING_LINKS = 10
+DEALS_NUM_LATEST =  10
+STORES_NUM_LATEST = 10
