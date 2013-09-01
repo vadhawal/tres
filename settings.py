@@ -407,7 +407,7 @@ SOCIAL_AUTH_DEFAULT_USERNAME =  'new_social_auth_user' # you'll need to import s
 SOCIAL_AUTH_EXTRA_DATA = False
 SOCIAL_AUTH_CHANGE_SIGNAL_ONLY = True
 SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
-FACEBOOK_AUTH_EXTRA_ARGUMENTS = {'display': 'popup'}
+#FACEBOOK_AUTH_EXTRA_ARGUMENTS = {'display': 'popup'}
 
 TWITTER_EXTRA_DATA = [('profile_image_url', 'profile_image_url')]
 
