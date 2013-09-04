@@ -8,8 +8,8 @@ from voting.views import vote_on_object
 from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment, Review
-from userProfile.models import Broadcast, UserWishRadio
-from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, close_login_popup, get_profile_image  
+from userProfile.models import Broadcast, BroadcastDeal, BroadcastWish, GenericWish
+from userProfile.views import broadcast, userwish, view_wish, get_wishlist, shareWish, close_login_popup, get_profile_image , view_deal, view_post 
 from userProfile.views import followWish, unfollowWish, getTrendingStores, getTrendingDeals, getTrendingReviews, render_wish
 from mezzanine.blog.views import blog_subcategories, get_vendors, get_vendors_all, get_vendors_allsub
 
@@ -39,9 +39,21 @@ image_dict = {
     'slug_field': 'slug',
     'allow_xmlhttprequest': 'true',
 }
-user_wishradio_dict = {
-    'model': UserWishRadio,
-    'template_object_name': 'userwishradio',
+generic_wish_dict = {
+    'model': GenericWish,
+    'template_object_name': 'GenericWish',
+    'slug_field': 'slug',
+    'allow_xmlhttprequest': 'true',    
+}
+broadcast_wish_dict = {
+    'model': BroadcastWish,
+    'template_object_name': 'BroadcastWish',
+    'slug_field': 'slug',
+    'allow_xmlhttprequest': 'true',    
+}
+broadcast_deal_dict = {
+    'model': BroadcastDeal,
+    'template_object_name': 'BroadcastDeal',
     'slug_field': 'slug',
     'allow_xmlhttprequest': 'true',    
 }
@@ -63,7 +75,9 @@ urlpatterns = patterns("",
     url(r'^review/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, review_dict, name="vote_on_reviews"),
     url(r'^albums/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, album_dict, name="vote_on_albums"),
     url(r'^images/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, image_dict, name="vote_on_images"),
-    url(r'^broadcast/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, user_wishradio_dict, name="vote_on_wishes"),   
+    url(r'^post/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, generic_wish_dict, name="vote_on_post"),
+    url(r'^wish/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, broadcast_wish_dict, name="vote_on_wish"), 
+    url(r'^deal/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, broadcast_deal_dict, name="vote_on_deal"),    
     url(r'^voters/(?P<content_type_id>\d+)/(?P<object_id>\d+)/$', 'voting.views.get_voters_info', name='get_voters_info'), 
     (r"^gallery/", include("imagestore.urls", namespace="imagestore")),
     url(r'^object/hit/$', update_hit_count_ajax, name='hitcount_update_ajax'),
@@ -74,6 +88,8 @@ urlpatterns = patterns("",
     url(r'^broadcast/', broadcast, name="broadcast" ),
     url(r'^userwish/', userwish, name="userwish" ),
     url(r'^view_wish/(?P<wish_id>[\d]+)/$', view_wish, name='view_wish'),
+    url(r'^view_deal/(?P<deal_id>[\d]+)/$', view_deal, name='view_deal'),
+    url(r'^view_post/(?P<post_id>[\d]+)/$', view_post, name='view_post'),
     url('^', include('follow.urls')),
     url(r'^get_wishlist/(?P<content_type_id>\d+)/(?P<object_id>\d+)/(?P<sIndex>\d+)/(?P<lIndex>\d+)/$',
         get_wishlist, name='get_wishlist'),
