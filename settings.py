@@ -446,7 +446,6 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
 #Imagestore Settings
 MAX_IMAGES_PER_VENDOR = 50
-PREFIX_MESSAGE_MAX_LENGTH = 256
 IMAGESTORE_IMAGE_QUALITY = 60
 FILE_UPLOAD_PERMISSIONS = 0644
 
@@ -460,7 +459,7 @@ CACHES = {
 
 #Activity Feed Settings
 ACTSTREAM_SETTINGS = {
-    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image','actstream.action','mezzanine.blog.BlogPost','userProfile.broadcast','userProfile.userwishradio','generic.review',),
+    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment', 'blog.blogpost','generic.threadedcomment','voting.Vote','imagestore.Album','imagestore.Image','actstream.action','mezzanine.blog.BlogPost','userProfile.broadcast','userProfile.genericwish','userProfile.broadcastwish','userProfile.broadcastdeal','generic.review',),
     'MANAGER': 'userProfile.streams.FeedActionManager',
     'FETCH_RELATIONS': True,
     'USE_PREFETCH': True,
@@ -469,12 +468,14 @@ ACTSTREAM_SETTINGS = {
 }
 WISH_LIKE_VERB              = u'liked the wish'
 DEAL_LIKE_VERB              = u'liked the deal'
+POST_LIKE_VERB              = u'liked the post'
 ALBUM_LIKE_WISH             = u'liked the album'
 REVIEW_COMMENT_LIKE_VERB    = u'liked the comment on the review'
 ALBUM_COMMENT_LIKE_VERB     = u'liked the comment on the album'
 IMAGE_COMMENT_LIKE_VERB     = u'liked the comment on the image'
 DEAL_COMMENT_LIKE_VERB      = u'liked the comment on the deal'
 WISH_COMMENT_LIKE_VERB      = u'liked the comment on the wish'
+POST_COMMENT_LIKE_VERB      = u'liked the comment on the post'
 REVIEW_LIKE_VERB            = u'liked the review'
 PHOTO_LIKE_VERB             = u'liked the photo'
 REVIEW_POST_VERB            = u'has posted a review'
@@ -488,7 +489,9 @@ ALBUM_ADD_IMAGE_VERB        = u'added new images to the album'
 FOLLOW_VERB                 = u'started following'
 SAID_VERB                   = u'said:'
 SHARE_VERB                  = u'shared'
-
+DEAL_POST_VERB              = u'posted a deal'
+WISH_POST_VERB              = u'posted a wish'
+POST_COMMENT_VERB           = u'has commented on post'
 #Trend Settings
 SEARCH_PER_PAGE = 10
 MAX_PAGING_LINKS = 10
