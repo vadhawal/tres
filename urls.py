@@ -7,7 +7,7 @@ from django.contrib.comments.models import Comment
 from voting.views import vote_on_object
 from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
-from mezzanine.generic.models import ThreadedComment, Review
+from mezzanine.generic.models import ThreadedComment, Review, RequiredReviewRating
 from userProfile.models import Broadcast, BroadcastDeal, BroadcastWish, GenericWish
 from userProfile.views import broadcast, userwish, view_wish, get_wishlist, get_deallist, shareWish, shareDeal, close_login_popup, get_profile_image , view_deal, view_post 
 from userProfile.views import followWish, unfollowWish, getTrendingStores, getTrendingDeals, getTrendingReviews, render_wish
@@ -16,6 +16,13 @@ from mezzanine.blog.views import blog_subcategories, get_vendors, get_vendors_al
 comment_dict = {
     'model': ThreadedComment,
     'template_object_name': 'comment',
+    'slug_field': 'slug',
+    'allow_xmlhttprequest': 'true',    
+}
+
+review_rating_dict = {
+    'model': RequiredReviewRating,
+    'template_object_name': 'review',
     'slug_field': 'slug',
     'allow_xmlhttprequest': 'true',    
 }
@@ -73,6 +80,7 @@ urlpatterns = patterns("",
     ("^admin/", include(admin.site.urls)),
     url(r'^comments/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, comment_dict, name="vote_on_comments"),
     url(r'^review/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, review_dict, name="vote_on_reviews"),
+    url(r'^reviewrating/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, review_rating_dict, name="rating_on_reviews"),
     url(r'^albums/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, album_dict, name="vote_on_albums"),
     url(r'^images/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, image_dict, name="vote_on_images"),
     url(r'^post/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, generic_wish_dict, name="vote_on_post"),
