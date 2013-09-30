@@ -505,3 +505,9 @@ USE_X_FORWARDED_HOST = True
 REVIEW_TITLE_MAX_LENGTH = 250
 
 BASE_URL = 'http://www.domain1.com'
+
+#Error Codes
+DEAL_IMAGE_REQUIRED                 = 100
+DEAL_EXPIRY_DATE_REQUIRED           = 101
+DEAL_SUBCATEGORY_REQUIRED           = 102
+WISH_CATEGORY_REQUIRED              = 103
