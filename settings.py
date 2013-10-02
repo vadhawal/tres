@@ -409,7 +409,8 @@ SOCIAL_AUTH_CHANGE_SIGNAL_ONLY = True
 SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
 FACEBOOK_AUTH_EXTRA_ARGUMENTS = {'display': 'popup'}
 
-TWITTER_EXTRA_DATA = [('profile_image_url', 'profile_image_url')]
+TWITTER_EXTRA_DATA = [('profile_image_url', 'profile_image_url'), ('location', 'location')]
+FACEBOOK_EXTRA_DATA = [('birthday', 'birthday'), ('location', 'location')]
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
@@ -441,7 +442,7 @@ EMAIL_HOST_USER = 'tresratings@gmail.com'
 EMAIL_HOST_PASSWORD = 'tres1234'
 EMAIL_PORT = 587
 NOTIFICATION_BACKENDS = [("tresratings@gmail.com", "notification.backends.email.EmailBackend"),]
-FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_birthday', 'user_location']
 #other code....
 
 #Imagestore Settings
