@@ -8,7 +8,7 @@ from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment, Review, RequiredReviewRating
 from userProfile.models import Broadcast, BroadcastDeal, BroadcastWish, GenericWish
-from userProfile.views import broadcast, userwish, view_wish, get_wishlist, get_deallist, shareWish, shareDeal, shareStore, close_login_popup, get_profile_image , view_deal, view_post 
+from userProfile.views import broadcast, userwish, view_wish, get_wishlist, get_deallist, shareObject, shareWish, shareDeal, shareStore, close_login_popup, get_profile_image , view_deal, view_post 
 from userProfile.views import followWish, unfollowWish, getTrendingStores, getTrendingDeals, getTrendingReviews, render_wish, get_reldata, get_reviews_by_user
 from mezzanine.blog.views import blog_subcategories, get_vendors, get_vendors_all, get_vendors_allsub
 
@@ -105,6 +105,7 @@ urlpatterns = patterns("",
     url(r'^shareWish/(?P<wish_id>\d+)/$', shareWish, name='shareWish'),
     url(r'^shareDeal/(?P<deal_id>\d+)/$', shareDeal, name='shareDeal'),
     url(r'^share/store/(?P<store_id>\d+)/$', shareStore, name='shareStore'),
+    url(r'^share/(?P<content_type_id>\d+)/(?P<object_id>\d+)/$', shareObject, name='shareObject'),
     url(r'^(?P<parent_category>[%&-_ \w\d]+)/(?P<sub_category>[%&-_ \w\d]+)/trendingstores/$', getTrendingStores , name='getTrendingStores'),
     url(r'^(?P<parent_category>[%&-_ \w\d]+)/(?P<sub_category>[%&-_ \w\d]+)/trendingdeals/$', getTrendingDeals , name='getTrendingDeals'),
     url(r'^(?P<parent_category>[%&-_ \w\d]+)/(?P<sub_category>[%&-_ \w\d]+)/trendingreviews/$', getTrendingReviews , name='getTrendingReviews'),
