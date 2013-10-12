@@ -9,7 +9,7 @@ from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment, Review, RequiredReviewRating
 from userProfile.models import Broadcast, BroadcastDeal, BroadcastWish, GenericWish
 from userProfile.views import broadcast, userwish, view_wish, get_wishlist, get_deallist, shareObject, shareWish, shareDeal, shareStore, close_login_popup, get_profile_image , view_deal, view_post 
-from userProfile.views import followWish, unfollowWish, getTrendingStores, getTrendingDeals, getTrendingReviews, render_wish, get_reldata, get_reviews_by_user
+from userProfile.views import followObject, unfollowObject, followWish, unfollowWish, getTrendingStores, getTrendingDeals, getTrendingReviews, render_wish, get_reldata, get_reviews_by_user
 from mezzanine.blog.views import blog_subcategories, get_vendors, get_vendors_all, get_vendors_allsub
 
 comment_dict = {
@@ -110,7 +110,9 @@ urlpatterns = patterns("",
     url(r'^(?P<parent_category>[%&-_ \w\d]+)/(?P<sub_category>[%&-_ \w\d]+)/trendingdeals/$', getTrendingDeals , name='getTrendingDeals'),
     url(r'^(?P<parent_category>[%&-_ \w\d]+)/(?P<sub_category>[%&-_ \w\d]+)/trendingreviews/$', getTrendingReviews , name='getTrendingReviews'),
     url(r'^follow/wish/(?P<wish_id>\d+)/$', followWish, name='followWish'),
-    url(r'^unfollow/wish/(?P<wish_id>\d+)/$', unfollowWish, name='unfollowWish'), 
+    url(r'^unfollow/wish/(?P<wish_id>\d+)/$', unfollowWish, name='unfollowWish'),
+    url(r'^follow/(?P<content_type_id>\d+)/(?P<object_id>\d+)/$', followObject, name='followObject'),
+    url(r'^unfollow/(?P<content_type_id>\d+)/(?P<object_id>\d+)/$', unfollowObject, name='unfollowObject'), 
     url(r'^(?P<category_slug>[-\w\d]+)/subcategories/$', blog_subcategories , name='blog_subcategories'),
     url(r'^getvendors/(?P<parent_category_slug>[%&-_ \w\d]+)/(?P<sub_category_slug>[%&-_ \w\d]+)/$', get_vendors, name="get_vendors" ),
     url(r'^getvendors/[%&-_ \w\d]+/$', get_vendors_allsub, name="get_vendors_allsub" ),
