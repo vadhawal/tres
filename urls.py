@@ -77,6 +77,7 @@ urlpatterns = patterns("",
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
     ("^admin/", include(admin.site.urls)),
+    url(r'^cropper/', include('cropper.urls')),
     url(r'^comments/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, comment_dict, name="vote_on_comments"),
     url(r'^review/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, review_dict, name="vote_on_reviews"),
     url(r'^reviewrating/(?P<object_id>\d+)/(?P<direction>up|down|clear)/vote/?$', vote_on_object, review_rating_dict, name="rating_on_reviews"),

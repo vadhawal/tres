@@ -192,6 +192,7 @@ sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-social-friends-finder"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-messages"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-notification"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-follow"))
+sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-image-cropper"))
 
 #sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-social-path"))
 # Name of the directory for the project.
@@ -242,6 +243,7 @@ PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 ################
 
 INSTALLED_APPS = (   
+    "cropper",
     "userProfile", 
     "django.contrib.admin",
     "django.contrib.auth",
