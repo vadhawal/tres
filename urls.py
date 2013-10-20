@@ -8,7 +8,7 @@ from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment, Review, RequiredReviewRating
 from userProfile.models import Broadcast, BroadcastDeal, BroadcastWish, GenericWish
-from userProfile.views import broadcast, userwish, view_wish, get_wishlist, get_deallist, shareObject, deleteObject, shareWish, shareDeal, shareStore, close_login_popup, get_profile_image , view_deal, view_post 
+from userProfile.views import broadcast, userwish, view_wish, get_wishlist, get_deallist, get_filtered_deallist, shareObject, deleteObject, shareWish, shareDeal, shareStore, close_login_popup, get_profile_image , view_deal, view_post 
 from userProfile.views import followObject, unfollowObject, followWish, unfollowWish, getTrendingStores, getTrendingDeals, getTrendingReviews, render_wish, get_reldata, get_reviews_by_user
 from mezzanine.blog.views import blog_subcategories, get_vendors, get_vendors_all, get_vendors_allsub
 
@@ -103,6 +103,8 @@ urlpatterns = patterns("",
         get_wishlist, name='get_wishlist'),
     url(r'^get_deallist/(?P<content_type_id>\d+)/(?P<object_id>\d+)/(?P<sIndex>\d+)/(?P<lIndex>\d+)/$',
         get_deallist, name='get_deallist'),
+    url(r'^filter/deals/(?P<store_id>\d+)/(?P<sub_category>[%&-_ \w\d]+)/(?P<sIndex>\d+)/(?P<lIndex>\d+)/$',
+        get_filtered_deallist, name='get_filtered_deallist'),
     url(r'^shareWish/(?P<wish_id>\d+)/$', shareWish, name='shareWish'),
     url(r'^shareDeal/(?P<deal_id>\d+)/$', shareDeal, name='shareDeal'),
     url(r'^share/store/(?P<store_id>\d+)/$', shareStore, name='shareStore'),
