@@ -267,7 +267,6 @@ INSTALLED_APPS = (
     "social_auth",
     "relationships",
     "south",
-    "activity_feed",
     "actstream",
     "voting",
     "tagging",
