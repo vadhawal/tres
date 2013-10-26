@@ -74,6 +74,8 @@ from django.template.defaultfilters import slugify
 # Setting to turn on featured images for blog posts. Defaults to False.
 #
 BLOG_USE_FEATURED_IMAGE = True
+# vdhawal: enable account verification for production
+#ACCOUNTS_VERIFICATION_REQUIRED = True 
 
 # If True, the south application will be automatically added to the
 # INSTALLED_APPS setting.
@@ -418,6 +420,7 @@ FACEBOOK_EXTRA_DATA = [('birthday', 'birthday'), ('location', 'location'), ('gen
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
     'social_auth.backends.facebook.FacebookBackend',
+    'mezzanine.core.auth_backends.MezzanineBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
