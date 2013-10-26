@@ -527,3 +527,4 @@ DEAL_EXPIRY_DATE_INVALID            = 107
 UNAUTHORIZED_OPERATION              = 400
 OBJECT_DOES_NOT_EXIST               = 401
 AJAX_ONLY_SUPPORT                   = 402
+INSUFFICIENT_DATA                   = 403

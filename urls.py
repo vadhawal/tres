@@ -8,7 +8,7 @@ from imagestore.models import Album, Image
 from hitcount.views import update_hit_count_ajax
 from mezzanine.generic.models import ThreadedComment, Review, RequiredReviewRating
 from userProfile.models import Broadcast, BroadcastDeal, BroadcastWish, GenericWish
-from userProfile.views import broadcast, userwish, view_wish, get_wishlist, get_deallist, get_filtered_deallist, get_related_stores, shareObject, deleteObject, shareWish, shareDeal, shareStore, close_login_popup, get_profile_image , view_deal, view_post 
+from userProfile.views import edit_blog_image, broadcast, userwish, view_wish, get_wishlist, get_deallist, get_filtered_deallist, get_related_stores, shareObject, deleteObject, shareWish, shareDeal, shareStore, close_login_popup, get_profile_image , view_deal, view_post 
 from userProfile.views import followObject, unfollowObject, followWish, unfollowWish, getTrendingStores, getTrendingDeals, getTrendingReviews, render_wish, get_reldata, get_reviews_by_user
 from mezzanine.blog.views import blog_subcategories, get_vendors, get_vendors_all, get_vendors_allsub
 
@@ -126,7 +126,8 @@ urlpatterns = patterns("",
     url(r'^users/profile_image/(?P<username>[%&-_ \w\d]+)/$', get_profile_image, name="get_profile_image" ),
     url(r'^wish/(?P<wish_id>\d+)/$', render_wish, name='render_wish'),
     url(r'^reldata/(?P<content_type_id>\d+)/(?P<object_id>\d+)/$', get_reldata, name='get_reldata'),
-    url(r'^get_reviews_by_user/(?P<user_id>\d+)/$', get_reviews_by_user, name='get_reviews_by_user'),        
+    url(r'^get_reviews_by_user/(?P<user_id>\d+)/$', get_reviews_by_user, name='get_reviews_by_user'),  
+    url(r'^blog/image/edit/(?P<blogpost_id>[\d]+)/$', edit_blog_image, name='edit_blog_image'),      
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 
