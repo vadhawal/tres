@@ -195,6 +195,7 @@ sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-messages"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-notification"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-follow"))
 sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-image-cropper"))
+sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-widget-tweaks"))
 
 #sys.path.insert(0,os.path.join(PROJECT_ROOT,"django-social-path"))
 # Name of the directory for the project.
@@ -279,6 +280,7 @@ INSTALLED_APPS = (
     "notification",
     "django_messages",
     "follow",
+    "widget_tweaks",
 )
 
 # List of processors used by RequestContext to populate the context.
