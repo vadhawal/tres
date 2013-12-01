@@ -72,7 +72,6 @@ from django.template.defaultfilters import slugify
 # )
 
 # Setting to turn on featured images for blog posts. Defaults to False.
-#
 BLOG_USE_FEATURED_IMAGE = True
 # vdhawal: enable account verification for production
 #ACCOUNTS_VERIFICATION_REQUIRED = True 
@@ -281,6 +280,8 @@ INSTALLED_APPS = (
     "django_messages",
     "follow",
     "widget_tweaks",
+    "django_ses",
+    "chronograph",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -405,6 +406,7 @@ else:
 # SOCIAL AUTH SETTINGS
 FACEBOOK_APP_ID = '132071406991673'
 FACEBOOK_API_SECRET = 'fb97559adbaea9aabf2e2fa4acfdacf8'
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_birthday', 'user_location']
 TWITTER_CONSUMER_KEY         = 'KvNB58DW7Ac0Y8yaLrQFKw'
 TWITTER_CONSUMER_SECRET      = 'J5HoGEVHZWREbDjwHLc5vRwKnby1KqNIa4R0ladXLY'
 GOOGLE_OAUTH2_CLIENT_ID = '368389151830-5hrplm3uu213sm8kpjftdr5ec6sflvtv.apps.googleusercontent.com'
@@ -445,18 +447,26 @@ DJANGORESIZED_DEFAULT_SIZE = [800, 600]
 #HITCOUNT_HITS_PER_IP_LIMIT = 0
 #HITCOUNT_EXCLUDE_USER_GROUP = ('',)
 
-NOTIFICATION_BACKENDS = [
-    ("email", "notification.backends.email.EmailBackend"),
-]
+# NOTIFICATION_BACKENDS = [
+#     ("email", "seacucumber.backend.SESBackend"),
+# ]
 
-#Social Login Settings
+NOTIFICATION_QUEUE_ALL=True
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'tresratings@gmail.com'
-EMAIL_HOST_PASSWORD = 'tres1234'
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_HOST_USER = 'AKIAI6IIA6QQEEVDFKQQ'    #SES username
+EMAIL_HOST_PASSWORD = 'AnykCYSamXcYO16WNs0HvjzHpM+lSH3v/05C68n/FGoQ'  #SES password
 EMAIL_PORT = 587
-NOTIFICATION_BACKENDS = [("tresratings@gmail.com", "notification.backends.email.EmailBackend"),]
-FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_birthday', 'user_location']
+AWS_SES_REGION_NAME = 'us-east-1'
+AWS_SES_REGION_ENDPOINT = 'email.us-east-1.amazonaws.com'
+DEFAULT_FROM_EMAIL = 'msaurabh.nitw@gmail.com'
+# SERVER_EMAIL = 'msaurabh.nitw@gmail.com'
+# NOTIFICATION_BACKENDS = [("tresratings@gmail.com", "seacucumber.backend.SESBackend"),]
+EMAIL_BACKEND = 'django_ses.SESBackend' #'seacucumber.backend.SESBackend'
+AWS_ACCESS_KEY_ID = 'AKIAJIJ53XPMKAOV7TDQ'
+AWS_SECRET_ACCESS_KEY = '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'
+
+
 #other code....
 
 #Imagestore Settings
