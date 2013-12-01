@@ -1,0 +1,70 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fnil\fcharset0 Verdana;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww19500\viewh12240\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs26 \cf2 upgrade to ubuntu 13.04 - do-release-upgrade\
+\
+export LC_ALL=en_US.UTF-8\
+export LANG=en_US.UTF-8
+\f1\fs24 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\pardirnatural
+\cf0 \
+mezzanine-project tres\
+cd tres\
+\
+git clone https://github.com/vadhawal/django-hitcount.git - csrf protection changes. if the hot count package is not working - this might the be the problem in the hitcount_tags.py\
+git clone https://github.com/vadhawal/django-messages.git \
+git clone https://github.com/vadhawal/django-notifications.git \
+git clone https://github.com/vadhawal/django-relationships.git\
+git clone https://github.com/vadhawal/django-social-friends-finder.git\
+git clone https://github.com/vadhawal/django-voting.git\
+git clone https://github.com/vadhawal/django-follow.git\
+git clone https://github.com/vadhawal/apps.git\
+cd..\
+git clone https://github.com/vadhawal/tres.git\
+\
+mkdir ecommreview\
+cd ecommreview\
+git clone https://github.com/vadhawal/django.git\
+cd django\
+python setup.py install\
+cd ..\
+git clone https://github.com/vadhawal/mezzanine.git\
+cd mezzanine\
+python setup.py install\
+cd ..\
+git clone https://github.com/vadhawal/imagestore.git\
+cd imagestore\
+python setup.py install\
+cd ..\
+git clone https://github.com/vadhawal/django-activity-stream.git\
+cd imagestore\
+python setup.py install\
+cd ..\
+git clone https://github.com/vadhawal/django-social-auth.git\
+cd imagestore\
+python setup.py install\
+cd ..\
+\
+sudo pip install django-resized\
+sudo pip install django-jsonfield\
+\
+sudo\
+\
+edit /etc/hosts to fake the local domain name.this is required for social auth to work.\
+edit library/postgre/data/postgresql.conf change listen address from * to fake local domain. this is required for social auth to work.\
+edit local_settings.py and when creating the db for the mezzanine app\
+\
+ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)" \
+brew install libjpeg\
+\
+install pillow for jpeg errors\
+\
+\
+bought category generic/forms.py needs to be enabled for prod.\
+actstream/templatetags/activity_tags.py the asNode method arguments set as 3 might need to revisited\
+\
+}

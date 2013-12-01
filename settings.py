@@ -407,8 +407,8 @@ FACEBOOK_APP_ID = '132071406991673'
 FACEBOOK_API_SECRET = 'fb97559adbaea9aabf2e2fa4acfdacf8'
 TWITTER_CONSUMER_KEY         = 'KvNB58DW7Ac0Y8yaLrQFKw'
 TWITTER_CONSUMER_SECRET      = 'J5HoGEVHZWREbDjwHLc5vRwKnby1KqNIa4R0ladXLY'
-GOOGLE_OAUTH2_CLIENT_ID = '724652257519-i4ha3lvrt0faeot6cpgnvh1573qb8kee.apps.googleusercontent.com'
-GOOGLE_OAUTH2_CLIENT_SECRET = 'd2I4nTOlBkffy2R6-T-nx35-'
+GOOGLE_OAUTH2_CLIENT_ID = '368389151830-5hrplm3uu213sm8kpjftdr5ec6sflvtv.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET = 'KPtLEaOFNfNWPTmJ7EgWL7TQ'
 GOOGLE_OAUTH_EXTRA_SCOPE =  [ 
                                 'https://www.google.com/m8/feeds', 
                             ]
