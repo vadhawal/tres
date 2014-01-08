@@ -1,8 +1,10 @@
 *.pyc
 *.pyo
 *.db
+*.orig
 .DS_Store
 .coverage
+/automation
 /apps
 /django-hitcount
 /django-messages
