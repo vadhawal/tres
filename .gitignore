@@ -4,6 +4,8 @@
 *.orig
 .DS_Store
 .coverage
+settings.py
+local_settings.py
 /automation
 /apps
 /django-hitcount
